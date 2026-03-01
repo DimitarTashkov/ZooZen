@@ -14,6 +14,7 @@ namespace ZooZen.Forms
     {
         private readonly IUserService _userService;
         private string? _selectedAvatarPath = null;
+        
 
         public Register(IUserService userService)
         {
@@ -51,12 +52,12 @@ namespace ZooZen.Forms
 
             var model = new RegisterUserInputModel
             {
-                Username  = username,
-                Password  = password,
+                Username = username,
+                Password = password,
                 FirstName = txtFirstName.Text.Trim(),
-                LastName  = txtLastName.Text.Trim(),
-                Phone     = txtPhone.Text.Trim(),
-                Address   = txtAddress.Text.Trim(),
+                LastName = txtLastName.Text.Trim(),
+                Phone = txtPhone.Text.Trim(),
+                Address = txtAddress.Text.Trim(),
                 ProfilePicturePath = _selectedAvatarPath
             };
 
@@ -80,7 +81,7 @@ namespace ZooZen.Forms
 
         private void ShowError(string message)
         {
-            lblError.Text    = message;
+            lblError.Text = message;
             lblError.Visible = true;
         }
 
@@ -102,6 +103,12 @@ namespace ZooZen.Forms
                 try { picAvatar.Image = Image.FromFile(dlg.FileName); }
                 catch { picAvatar.Image = null; }
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Login loginForm = new Login(_userService);
+            Program.SwitchMainForm(loginForm);
         }
     }
 }
