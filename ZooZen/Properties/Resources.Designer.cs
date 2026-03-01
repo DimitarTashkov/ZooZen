@@ -73,6 +73,26 @@ namespace ZooZen.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap home_page_img1 {
+            get {
+                object obj = ResourceManager.GetObject("home page img1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap home_page_img2 {
+            get {
+                object obj = ResourceManager.GetObject("home page img2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
