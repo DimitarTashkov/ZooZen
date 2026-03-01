@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ZooZen.Models.DbConfiguration
+{
+    /// <summary>
+    /// Database connection configuration for ZooZen
+    /// </summary>
+    public class Configuration
+    {
+        public static string ConnectionString = "Data Source=MITKO\\SQLEXPRESS;Initial Catalog=ZooZen;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;";
+    }
+}
