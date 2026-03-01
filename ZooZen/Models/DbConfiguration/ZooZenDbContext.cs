@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ZooZen.Models;
 using ZooZen.Models.DbConfiguration;
 
 namespace ZooZen.Data
 {
     /// <summary>
-    /// Контекст на базата данни за ZooZen зоомагазин
+    /// ???????? ?? ?????? ????? ?? ZooZen ??????????
     /// </summary>
     public class ZooZenDbContext : DbContext
     {
@@ -66,7 +66,7 @@ namespace ZooZen.Data
                 .WithMany()
                 .HasForeignKey(oi => oi.ProductId);
 
-            // Прецизност за десетични стойности
+            // ?????????? ?? ????????? ?????????
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");
@@ -79,7 +79,7 @@ namespace ZooZen.Data
                 .Property(oi => oi.UnitPrice)
                 .HasColumnType("decimal(18,2)");
 
-            // Seed на ролите Admin и Client
+            // Seed ?? ?????? Admin ? Client
             var adminRoleId = Guid.Parse("A1B2C3D4-E5F6-7890-ABCD-EF1234567890");
             var clientRoleId = Guid.Parse("B2C3D4E5-F6A7-8901-BCDE-F12345678901");
 

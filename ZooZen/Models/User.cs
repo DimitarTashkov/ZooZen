@@ -40,6 +40,8 @@ namespace ZooZen.Models
         [MaxLength(AddressMaxLength)]
         public string? Address { get; set; }
 
+        public string? ProfilePicturePath { get; set; }
+
         public virtual ICollection<UserRole> UserRoles { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }

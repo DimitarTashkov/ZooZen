@@ -14,6 +14,7 @@ namespace ZooZen.Forms
         private readonly IUserService _userService;
         private readonly Guid _userId;
         private User? _user;
+        private string? _selectedAvatarPath = null;
 
         public ProfileForm(IUserService userService, Guid userId)
         {
@@ -24,6 +25,11 @@ namespace ZooZen.Forms
             var nav = NavigationHelper.CreateNavigationMenu(this, AuthorizationHelper.IsAuthorized());
             Controls.Add(nav);
             nav.BringToFront();
+
+            int navHeight = nav.PreferredSize.Height;
+            formPanel.Location = new Point(0, navHeight);
+            formPanel.Size = new Size(ClientSize.Width, ClientSize.Height - navHeight);
+            ClientSize = new Size(ClientSize.Width, ClientSize.Height + navHeight);
             formPanel.BringToFront();
         }
 
@@ -33,12 +39,18 @@ namespace ZooZen.Forms
             if (_user == null) { Close(); return; }
 
             txtUsername.Text  = _user.Username;
+            txtPassword.Text = "";
             txtFirstName.Text = _user.FirstName ?? "";
             txtLastName.Text  = _user.LastName  ?? "";
             txtPhone.Text     = _user.Phone     ?? "";
             txtAddress.Text   = _user.Address   ?? "";
 
-            // Set fields to read-only initially
+            if (!string.IsNullOrEmpty(_user.ProfilePicturePath) && File.Exists(_user.ProfilePicturePath))
+            {
+                _selectedAvatarPath = _user.ProfilePicturePath;
+                try { picAvatar.Image = Image.FromFile(_user.ProfilePicturePath); } catch { }
+            }
+
             SetReadOnly(true);
         }
 
@@ -47,12 +59,20 @@ namespace ZooZen.Forms
             SetReadOnly(false);
             btnSave.Visible = true;
             btnEdit.Visible = false;
+            btnChooseAvatar.Visible = true;
+            txtPassword.ReadOnly = false;
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             { MessageBox.Show(EmptyInputData, "ZooZen", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+
+            if (string.IsNullOrEmpty(_selectedAvatarPath))
+            {
+                MessageBox.Show("Please choose a profile photo!", "ZooZen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             var model = new EditProfileInputModel
             {
@@ -61,7 +81,9 @@ namespace ZooZen.Forms
                 FirstName = txtFirstName.Text.Trim(),
                 LastName  = txtLastName.Text.Trim(),
                 Phone     = txtPhone.Text.Trim(),
-                Address   = txtAddress.Text.Trim()
+                Address   = txtAddress.Text.Trim(),
+                ProfilePicturePath = _selectedAvatarPath,
+                Password  = string.IsNullOrWhiteSpace(txtPassword.Text) ? null : txtPassword.Text.Trim()
             };
 
             bool ok = await _userService.UpdateUserAsync(model);
@@ -71,6 +93,8 @@ namespace ZooZen.Forms
                 SetReadOnly(true);
                 btnSave.Visible = false;
                 btnEdit.Visible = true;
+                btnChooseAvatar.Visible = false;
+                txtPassword.Text = "";
             }
             else
             {
@@ -95,14 +119,28 @@ namespace ZooZen.Forms
             }
         }
 
+        private void btnChooseAvatar_Click(object sender, EventArgs e)
+        {
+            using var dlg = new OpenFileDialog
+            {
+                Title = "Choose Profile Photo",
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
+            };
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _selectedAvatarPath = dlg.FileName;
+                try { picAvatar.Image = Image.FromFile(dlg.FileName); } catch { }
+            }
+        }
+
         private void SetReadOnly(bool readOnly)
         {
             txtFirstName.ReadOnly = readOnly;
             txtLastName.ReadOnly  = readOnly;
             txtPhone.ReadOnly     = readOnly;
             txtAddress.ReadOnly   = readOnly;
-            // Username is always read-only
-            txtUsername.ReadOnly  = true;
+            txtPassword.ReadOnly  = readOnly;
+            txtUsername.ReadOnly   = true;
         }
     }
 }

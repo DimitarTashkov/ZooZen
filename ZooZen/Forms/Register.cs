@@ -13,6 +13,7 @@ namespace ZooZen.Forms
     public partial class Register : Form
     {
         private readonly IUserService _userService;
+        private string? _selectedAvatarPath = null;
 
         public Register(IUserService userService)
         {
@@ -29,6 +30,12 @@ namespace ZooZen.Forms
                 string.IsNullOrWhiteSpace(txtPassword.Text))
             {
                 ShowError(EmptyInputData);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_selectedAvatarPath))
+            {
+                MessageBox.Show("Please choose a profile photo!", "ZooZen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -49,7 +56,8 @@ namespace ZooZen.Forms
                 FirstName = txtFirstName.Text.Trim(),
                 LastName  = txtLastName.Text.Trim(),
                 Phone     = txtPhone.Text.Trim(),
-                Address   = txtAddress.Text.Trim()
+                Address   = txtAddress.Text.Trim(),
+                ProfilePicturePath = _selectedAvatarPath
             };
 
             var (isValid, errors) = await _userService.ValidateModelAsync(model);
@@ -79,6 +87,21 @@ namespace ZooZen.Forms
         private void pnlBackground_Paint(object sender, PaintEventArgs e)
         {
             LayoutHelper.set_ImageBackground(sender, e);
+        }
+
+        private void btnChooseAvatar_Click(object sender, EventArgs e)
+        {
+            using var dlg = new OpenFileDialog
+            {
+                Title = "Choose Profile Photo",
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
+            };
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _selectedAvatarPath = dlg.FileName;
+                try { picAvatar.Image = Image.FromFile(dlg.FileName); }
+                catch { picAvatar.Image = null; }
+            }
         }
     }
 }

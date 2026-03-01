@@ -48,8 +48,10 @@ namespace ZooZen.Forms
             formPanel.Controls.Add(lblHours);
             formPanel.Controls.Add(lblHoursVal);
             formPanel.Controls.Add(btnClose);
-            formPanel.Dock = DockStyle.Fill;
+            formPanel.Dock = DockStyle.None;
+            formPanel.Location = new Point(0, 0);
             formPanel.Name = "formPanel";
+            formPanel.Size = new Size(914, 510);
             formPanel.TabIndex = 0;
             //
             // lblTitle
@@ -177,7 +179,7 @@ namespace ZooZen.Forms
             //
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(520, 510);
+            ClientSize = new Size(914, 510);
             Controls.Add(formPanel);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedDialog;

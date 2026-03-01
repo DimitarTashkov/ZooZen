@@ -32,6 +32,21 @@ namespace ZooZen.Forms
             _activeUser = _userService.GetLoggedInUserAsync();
             bool isAdmin = AuthorizationHelper.IsAuthorized();
             Management.Visible = isAdmin;
+            LoadUserAvatar();
+        }
+
+        private void LoadUserAvatar()
+        {
+            if (_activeUser != null && !string.IsNullOrEmpty(_activeUser.ProfilePicturePath)
+                && File.Exists(_activeUser.ProfilePicturePath))
+            {
+                try { roundPictureBox1.Image = Image.FromFile(_activeUser.ProfilePicturePath); }
+                catch { roundPictureBox1.Image = null; }
+            }
+            else
+            {
+                roundPictureBox1.Image = null;
+            }
         }
 
         private void roundPictureBox1_Click(object sender, EventArgs e)
@@ -39,6 +54,7 @@ namespace ZooZen.Forms
             if (_activeUser == null) return;
             OpenChildForm(() => new ProfileForm(_userService, _activeUser.Id));
             _activeUser = _userService.GetLoggedInUserAsync();
+            LoadUserAvatar();
         }
 
         private void catalogButton_Click(object sender, EventArgs e)
@@ -99,6 +115,7 @@ namespace ZooZen.Forms
                     {
                         OpenChildForm(() => new ProfileForm(_userService, _activeUser.Id));
                         _activeUser = _userService.GetLoggedInUserAsync();
+                        LoadUserAvatar();
                     }
                     break;
                 case "profileOrders":

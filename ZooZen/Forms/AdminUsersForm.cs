@@ -10,6 +10,7 @@ namespace ZooZen.Forms
     {
         private readonly IUserService _userService;
         private UserDataViewModel? _editing = null;
+        private string? _selectedAvatarPath = null;
 
         public AdminUsersForm(IUserService userService)
         {
@@ -175,6 +176,24 @@ namespace ZooZen.Forms
             txtAddress.Text   = u.Address   ?? "";
             btnSave.Text = "Save Changes";
             lblFormTitle.Text = "Edit User";
+
+            _selectedAvatarPath = null;
+            picUserAvatar.Image = null;
+        }
+
+        private void btnChooseUserAvatar_Click(object sender, EventArgs e)
+        {
+            using var dlg = new OpenFileDialog
+            {
+                Title = "Choose Profile Photo",
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
+            };
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _selectedAvatarPath = dlg.FileName;
+                try { picUserAvatar.Image = Image.FromFile(dlg.FileName); }
+                catch { picUserAvatar.Image = null; }
+            }
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -186,6 +205,12 @@ namespace ZooZen.Forms
                 return;
             }
 
+            if (string.IsNullOrEmpty(_selectedAvatarPath))
+            {
+                MessageBox.Show("Please choose a profile photo for this user!", "ZooZen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var model = new EditProfileInputModel
             {
                 Id        = _editing.Id,
@@ -193,7 +218,8 @@ namespace ZooZen.Forms
                 FirstName = txtFirstName.Text.Trim(),
                 LastName  = txtLastName.Text.Trim(),
                 Phone     = txtPhone.Text.Trim(),
-                Address   = txtAddress.Text.Trim()
+                Address   = txtAddress.Text.Trim(),
+                ProfilePicturePath = _selectedAvatarPath
             };
 
             bool ok = await _userService.UpdateUserAsync(model);
@@ -212,6 +238,8 @@ namespace ZooZen.Forms
         private void ClearForm()
         {
             _editing = null;
+            _selectedAvatarPath = null;
+            picUserAvatar.Image = null;
             txtUsername.Text = txtFirstName.Text = txtLastName.Text = txtPhone.Text = txtAddress.Text = "";
             btnSave.Text = "Save Changes";
             lblFormTitle.Text = "User Details";

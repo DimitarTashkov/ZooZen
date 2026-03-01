@@ -156,10 +156,31 @@ namespace ZooZen.Forms
             txtPrice.Text = p.Price.ToString("F2");
             txtStock.Text = p.StockQuantity.ToString();
             cmbCategory.SelectedItem = p.Category;
-            txtImageUrl.Text = p.ImageUrl ?? "";
             _selectedImagePath = p.ImageUrl;
+            if (!string.IsNullOrEmpty(p.ImageUrl) && File.Exists(p.ImageUrl))
+            {
+                try { picProductImage.Image = Image.FromFile(p.ImageUrl); } catch { picProductImage.Image = null; }
+            }
+            else
+            {
+                picProductImage.Image = null;
+            }
             btnSave.Text = "Save Changes";
             lblFormTitle.Text = "Edit Product";
+        }
+
+        private void btnChooseImage_Click(object sender, EventArgs e)
+        {
+            using var dlg = new OpenFileDialog
+            {
+                Title = "Choose Product Image",
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
+            };
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _selectedImagePath = dlg.FileName;
+                try { picProductImage.Image = Image.FromFile(dlg.FileName); } catch { picProductImage.Image = null; }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -167,6 +188,12 @@ namespace ZooZen.Forms
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
                 MessageBox.Show("Please enter a product name!", "ZooZen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_selectedImagePath))
+            {
+                MessageBox.Show("Please choose a product image!", "ZooZen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -184,15 +211,13 @@ namespace ZooZen.Forms
                 return;
             }
 
-            string? finalImage = string.IsNullOrWhiteSpace(txtImageUrl.Text) ? null : txtImageUrl.Text.Trim();
-
             var product = _editing ?? new Product();
             product.Name = txtName.Text.Trim();
             product.Description = txtDescription.Text.Trim();
             product.Price = price;
             product.StockQuantity = stock;
             product.Category = (ProductCategory)cmbCategory.SelectedItem!;
-            product.ImageUrl = finalImage;
+            product.ImageUrl = _selectedImagePath;
 
             if (_editing == null)
                 _productService.AddProduct(product);
@@ -217,7 +242,7 @@ namespace ZooZen.Forms
             txtDescription.Text = "";
             txtPrice.Text = "";
             txtStock.Text = "";
-            txtImageUrl.Text = "";
+            picProductImage.Image = null;
             cmbCategory.SelectedIndex = 0;
             btnSave.Text = "Save Product";
             lblFormTitle.Text = "New Product";

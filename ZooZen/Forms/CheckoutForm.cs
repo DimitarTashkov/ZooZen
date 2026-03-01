@@ -34,6 +34,11 @@ namespace ZooZen.Forms
             var nav = NavigationHelper.CreateNavigationMenu(this, AuthorizationHelper.IsAuthorized());
             Controls.Add(nav);
             nav.BringToFront();
+
+            int navHeight = nav.PreferredSize.Height;
+            formPanel.Location = new Point(0, navHeight);
+            formPanel.Size = new Size(ClientSize.Width, ClientSize.Height - navHeight);
+            ClientSize = new Size(ClientSize.Width, ClientSize.Height + navHeight);
             formPanel.BringToFront();
         }
 

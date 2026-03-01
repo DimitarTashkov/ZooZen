@@ -46,7 +46,8 @@ namespace ZooZen.Services
                 FirstName = registrationModel.FirstName,
                 LastName = registrationModel.LastName,
                 Phone = registrationModel.Phone,
-                Address = registrationModel.Address
+                Address = registrationModel.Address,
+                ProfilePicturePath = registrationModel.ProfilePicturePath
             };
 
             dbContext.Users.Add(user);
@@ -81,6 +82,10 @@ namespace ZooZen.Services
             user.LastName  = userModel.LastName;
             user.Phone     = userModel.Phone;
             user.Address   = userModel.Address;
+            if (userModel.ProfilePicturePath != null)
+                user.ProfilePicturePath = userModel.ProfilePicturePath;
+            if (!string.IsNullOrWhiteSpace(userModel.Password))
+                user.PasswordHash = userModel.Password;
 
             dbContext.Users.Update(user);
             await dbContext.SaveChangesAsync();

@@ -49,13 +49,15 @@ namespace ZooZen.Forms
             lblStockL = new Label();
             txtStock = new TextBox();
             lblImageL = new Label();
-            txtImageUrl = new TextBox();
+            picProductImage = new PictureBox();
+            btnChooseImage = new Button();
             btnSave = new Button();
             btnNew = new Button();
             lblHeader = new Label();
             productsContainer.SuspendLayout();
             productsHeaders.SuspendLayout();
             pnlRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picProductImage).BeginInit();
             SuspendLayout();
             //
             // lblHeader
@@ -153,12 +155,13 @@ namespace ZooZen.Forms
             pnlRight.Controls.Add(lblStockL);
             pnlRight.Controls.Add(txtStock);
             pnlRight.Controls.Add(lblImageL);
-            pnlRight.Controls.Add(txtImageUrl);
+            pnlRight.Controls.Add(picProductImage);
+            pnlRight.Controls.Add(btnChooseImage);
             pnlRight.Controls.Add(btnSave);
             pnlRight.Controls.Add(btnNew);
             pnlRight.Location = new Point(700, 50);
             pnlRight.Name = "pnlRight";
-            pnlRight.Size = new Size(400, 630);
+            pnlRight.Size = new Size(400, 720);
             pnlRight.TabIndex = 2;
             //
             // lblFormTitle
@@ -282,16 +285,33 @@ namespace ZooZen.Forms
             lblImageL.Name = "lblImageL";
             lblImageL.Size = new Size(80, 20);
             lblImageL.TabIndex = 11;
-            lblImageL.Text = "Image URL";
+            lblImageL.Text = "Image";
             //
-            // txtImageUrl
+            // picProductImage
             //
-            txtImageUrl.BackColor = Color.LightGray;
-            txtImageUrl.Font = new Font("Segoe UI", 10F);
-            txtImageUrl.Location = new Point(20, 342);
-            txtImageUrl.Name = "txtImageUrl";
-            txtImageUrl.Size = new Size(350, 30);
-            txtImageUrl.TabIndex = 12;
+            picProductImage.BackColor = Color.FromArgb(220, 220, 220);
+            picProductImage.BorderStyle = BorderStyle.FixedSingle;
+            picProductImage.Location = new Point(20, 342);
+            picProductImage.Name = "picProductImage";
+            picProductImage.Size = new Size(120, 120);
+            picProductImage.SizeMode = PictureBoxSizeMode.Zoom;
+            picProductImage.TabIndex = 12;
+            picProductImage.TabStop = false;
+            //
+            // btnChooseImage
+            //
+            btnChooseImage.BackColor = Color.FromArgb(46, 125, 50);
+            btnChooseImage.ForeColor = Color.White;
+            btnChooseImage.FlatStyle = FlatStyle.Flat;
+            btnChooseImage.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnChooseImage.Cursor = Cursors.Hand;
+            btnChooseImage.Location = new Point(155, 372);
+            btnChooseImage.Name = "btnChooseImage";
+            btnChooseImage.Size = new Size(150, 40);
+            btnChooseImage.TabIndex = 13;
+            btnChooseImage.Text = "Choose Image";
+            btnChooseImage.UseVisualStyleBackColor = false;
+            btnChooseImage.Click += btnChooseImage_Click;
             //
             // btnSave
             //
@@ -300,10 +320,10 @@ namespace ZooZen.Forms
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnSave.Cursor = Cursors.Hand;
-            btnSave.Location = new Point(20, 395);
+            btnSave.Location = new Point(20, 482);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(160, 44);
-            btnSave.TabIndex = 13;
+            btnSave.TabIndex = 14;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
@@ -313,10 +333,10 @@ namespace ZooZen.Forms
             btnNew.BackColor = Color.LightGray;
             btnNew.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnNew.Cursor = Cursors.Hand;
-            btnNew.Location = new Point(200, 395);
+            btnNew.Location = new Point(200, 482);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(160, 44);
-            btnNew.TabIndex = 14;
+            btnNew.TabIndex = 15;
             btnNew.Text = "New Product";
             btnNew.UseVisualStyleBackColor = false;
             btnNew.Click += btnNew_Click;
@@ -326,7 +346,7 @@ namespace ZooZen.Forms
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 248, 245);
-            ClientSize = new Size(1100, 680);
+            ClientSize = new Size(1100, 770);
             Controls.Add(pnlRight);
             Controls.Add(productsContainer);
             Controls.Add(lblHeader);
@@ -343,6 +363,7 @@ namespace ZooZen.Forms
             productsHeaders.PerformLayout();
             pnlRight.ResumeLayout(false);
             pnlRight.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picProductImage).EndInit();
             ResumeLayout(false);
         }
 
@@ -368,7 +389,8 @@ namespace ZooZen.Forms
         private Label lblStockL;
         private TextBox txtStock;
         private Label lblImageL;
-        private TextBox txtImageUrl;
+        private PictureBox picProductImage;
+        private Button btnChooseImage;
         private Button btnSave;
         private Button btnNew;
     }

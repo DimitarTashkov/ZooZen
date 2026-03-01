@@ -48,8 +48,11 @@ namespace ZooZen.Forms
             lblUsernameL = new Label();
             picLogo = new PictureBox();
             lblTitle = new Label();
+            picAvatar = new PictureBox();
+            btnChooseAvatar = new Button();
             formPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
             SuspendLayout();
             //
             // formPanel
@@ -72,14 +75,42 @@ namespace ZooZen.Forms
             formPanel.Controls.Add(lblPasswordL);
             formPanel.Controls.Add(txtUsername);
             formPanel.Controls.Add(lblUsernameL);
+            formPanel.Controls.Add(picAvatar);
+            formPanel.Controls.Add(btnChooseAvatar);
             formPanel.Controls.Add(picLogo);
             formPanel.Controls.Add(lblTitle);
             formPanel.Location = new Point(81, 33);
             formPanel.Margin = new Padding(3, 4, 3, 4);
             formPanel.Name = "formPanel";
-            formPanel.Size = new Size(753, 533);
+            formPanel.Size = new Size(753, 610);
             formPanel.TabIndex = 1;
             formPanel.Paint += pnlBackground_Paint;
+            //
+            // picAvatar
+            //
+            picAvatar.BackColor = Color.FromArgb(220, 220, 220);
+            picAvatar.BorderStyle = BorderStyle.FixedSingle;
+            picAvatar.Location = new Point(131, 424);
+            picAvatar.Name = "picAvatar";
+            picAvatar.Size = new Size(90, 90);
+            picAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            picAvatar.TabIndex = 20;
+            picAvatar.TabStop = false;
+            //
+            // btnChooseAvatar
+            //
+            btnChooseAvatar.BackColor = Color.FromArgb(46, 125, 50);
+            btnChooseAvatar.ForeColor = Color.White;
+            btnChooseAvatar.FlatStyle = FlatStyle.Flat;
+            btnChooseAvatar.Font = new Font("Verdana", 9F, FontStyle.Bold);
+            btnChooseAvatar.Cursor = Cursors.Hand;
+            btnChooseAvatar.Location = new Point(235, 449);
+            btnChooseAvatar.Name = "btnChooseAvatar";
+            btnChooseAvatar.Size = new Size(150, 40);
+            btnChooseAvatar.TabIndex = 21;
+            btnChooseAvatar.Text = "Choose Photo";
+            btnChooseAvatar.UseVisualStyleBackColor = false;
+            btnChooseAvatar.Click += btnChooseAvatar_Click;
             //
             // lblError
             //
@@ -87,7 +118,7 @@ namespace ZooZen.Forms
             lblError.BackColor = Color.Transparent;
             lblError.Font = new Font("Verdana", 8.25F, FontStyle.Bold | FontStyle.Italic);
             lblError.ForeColor = Color.Red;
-            lblError.Location = new Point(131, 480);
+            lblError.Location = new Point(131, 560);
             lblError.Name = "lblError";
             lblError.Size = new Size(54, 17);
             lblError.TabIndex = 19;
@@ -101,7 +132,7 @@ namespace ZooZen.Forms
             lblLogin.Cursor = Cursors.Hand;
             lblLogin.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             lblLogin.ForeColor = Color.White;
-            lblLogin.Location = new Point(0, 483);
+            lblLogin.Location = new Point(0, 563);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(199, 25);
             lblLogin.TabIndex = 18;
@@ -114,7 +145,7 @@ namespace ZooZen.Forms
             btnRegister.ForeColor = Color.White;
             btnRegister.FlatStyle = FlatStyle.Flat;
             btnRegister.Font = new Font("Verdana", 11.25F, FontStyle.Bold | FontStyle.Italic);
-            btnRegister.Location = new Point(507, 424);
+            btnRegister.Location = new Point(507, 504);
             btnRegister.Margin = new Padding(3, 4, 3, 4);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(183, 55);
@@ -303,6 +334,7 @@ namespace ZooZen.Forms
             formPanel.ResumeLayout(false);
             formPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picAvatar).EndInit();
             ResumeLayout(false);
         }
 
@@ -326,5 +358,7 @@ namespace ZooZen.Forms
         private Label lblUsernameL;
         private PictureBox picLogo;
         private Label lblTitle;
+        private PictureBox picAvatar;
+        private Button btnChooseAvatar;
     }
 }

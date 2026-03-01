@@ -27,5 +27,10 @@ namespace ZooZen.DTOs.User
 
         [MaxLength(AddressMaxLength)]
         public string? Address { get; set; }
+
+        public string? ProfilePicturePath { get; set; }
+
+        [MaxLength(PasswordMaxLength)]
+        public string? Password { get; set; }
     }
 }

@@ -34,6 +34,8 @@ namespace ZooZen.Forms
             lblTitle = new Label();
             lblUsernameL = new Label();
             txtUsername = new TextBox();
+            lblPasswordL = new Label();
+            txtPassword = new TextBox();
             lblFirstNameL = new Label();
             txtFirstName = new TextBox();
             lblLastNameL = new Label();
@@ -45,7 +47,10 @@ namespace ZooZen.Forms
             btnEdit = new Button();
             btnSave = new Button();
             btnDelete = new Button();
+            picAvatar = new PictureBox();
+            btnChooseAvatar = new Button();
             formPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
             SuspendLayout();
             //
             // formPanel
@@ -56,6 +61,8 @@ namespace ZooZen.Forms
             formPanel.Controls.Add(lblTitle);
             formPanel.Controls.Add(lblUsernameL);
             formPanel.Controls.Add(txtUsername);
+            formPanel.Controls.Add(lblPasswordL);
+            formPanel.Controls.Add(txtPassword);
             formPanel.Controls.Add(lblFirstNameL);
             formPanel.Controls.Add(txtFirstName);
             formPanel.Controls.Add(lblLastNameL);
@@ -64,12 +71,15 @@ namespace ZooZen.Forms
             formPanel.Controls.Add(txtPhone);
             formPanel.Controls.Add(lblAddressL);
             formPanel.Controls.Add(txtAddress);
+            formPanel.Controls.Add(picAvatar);
+            formPanel.Controls.Add(btnChooseAvatar);
             formPanel.Controls.Add(btnEdit);
             formPanel.Controls.Add(btnSave);
             formPanel.Controls.Add(btnDelete);
-            formPanel.Dock = DockStyle.Fill;
+            formPanel.Location = new Point(0, 0);
             formPanel.Name = "formPanel";
             formPanel.Padding = new Padding(30, 15, 30, 15);
+            formPanel.Size = new Size(914, 650);
             formPanel.TabIndex = 0;
             //
             // lblTitle
@@ -107,13 +117,37 @@ namespace ZooZen.Forms
             txtUsername.Size = new Size(420, 30);
             txtUsername.TabIndex = 3;
             //
+            // lblPasswordL
+            //
+            lblPasswordL.AutoSize = true;
+            lblPasswordL.BackColor = Color.Transparent;
+            lblPasswordL.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblPasswordL.ForeColor = Color.White;
+            lblPasswordL.Location = new Point(40, 122);
+            lblPasswordL.Name = "lblPasswordL";
+            lblPasswordL.Size = new Size(85, 23);
+            lblPasswordL.TabIndex = 17;
+            lblPasswordL.Text = "Password";
+            //
+            // txtPassword
+            //
+            txtPassword.BackColor = Color.LightGray;
+            txtPassword.Font = new Font("Segoe UI", 10F);
+            txtPassword.ForeColor = Color.DimGray;
+            txtPassword.Location = new Point(40, 147);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(420, 30);
+            txtPassword.TabIndex = 18;
+            //
             // lblFirstNameL
             //
             lblFirstNameL.AutoSize = true;
             lblFirstNameL.BackColor = Color.Transparent;
             lblFirstNameL.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblFirstNameL.ForeColor = Color.White;
-            lblFirstNameL.Location = new Point(40, 122);
+            lblFirstNameL.Location = new Point(40, 186);
             lblFirstNameL.Name = "lblFirstNameL";
             lblFirstNameL.Size = new Size(91, 23);
             lblFirstNameL.TabIndex = 4;
@@ -124,7 +158,7 @@ namespace ZooZen.Forms
             txtFirstName.BackColor = Color.LightGray;
             txtFirstName.Font = new Font("Segoe UI", 10F);
             txtFirstName.ForeColor = Color.DimGray;
-            txtFirstName.Location = new Point(40, 147);
+            txtFirstName.Location = new Point(40, 211);
             txtFirstName.Margin = new Padding(3, 4, 3, 4);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(420, 30);
@@ -136,7 +170,7 @@ namespace ZooZen.Forms
             lblLastNameL.BackColor = Color.Transparent;
             lblLastNameL.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblLastNameL.ForeColor = Color.White;
-            lblLastNameL.Location = new Point(40, 186);
+            lblLastNameL.Location = new Point(40, 250);
             lblLastNameL.Name = "lblLastNameL";
             lblLastNameL.Size = new Size(88, 23);
             lblLastNameL.TabIndex = 6;
@@ -147,7 +181,7 @@ namespace ZooZen.Forms
             txtLastName.BackColor = Color.LightGray;
             txtLastName.Font = new Font("Segoe UI", 10F);
             txtLastName.ForeColor = Color.DimGray;
-            txtLastName.Location = new Point(40, 211);
+            txtLastName.Location = new Point(40, 275);
             txtLastName.Margin = new Padding(3, 4, 3, 4);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(420, 30);
@@ -159,7 +193,7 @@ namespace ZooZen.Forms
             lblPhoneL.BackColor = Color.Transparent;
             lblPhoneL.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblPhoneL.ForeColor = Color.White;
-            lblPhoneL.Location = new Point(40, 250);
+            lblPhoneL.Location = new Point(40, 314);
             lblPhoneL.Name = "lblPhoneL";
             lblPhoneL.Size = new Size(56, 23);
             lblPhoneL.TabIndex = 8;
@@ -170,7 +204,7 @@ namespace ZooZen.Forms
             txtPhone.BackColor = Color.LightGray;
             txtPhone.Font = new Font("Segoe UI", 10F);
             txtPhone.ForeColor = Color.DimGray;
-            txtPhone.Location = new Point(40, 275);
+            txtPhone.Location = new Point(40, 339);
             txtPhone.Margin = new Padding(3, 4, 3, 4);
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(420, 30);
@@ -182,7 +216,7 @@ namespace ZooZen.Forms
             lblAddressL.BackColor = Color.Transparent;
             lblAddressL.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblAddressL.ForeColor = Color.White;
-            lblAddressL.Location = new Point(40, 314);
+            lblAddressL.Location = new Point(40, 378);
             lblAddressL.Name = "lblAddressL";
             lblAddressL.Size = new Size(68, 23);
             lblAddressL.TabIndex = 10;
@@ -193,11 +227,38 @@ namespace ZooZen.Forms
             txtAddress.BackColor = Color.LightGray;
             txtAddress.Font = new Font("Segoe UI", 10F);
             txtAddress.ForeColor = Color.DimGray;
-            txtAddress.Location = new Point(40, 339);
+            txtAddress.Location = new Point(40, 403);
             txtAddress.Margin = new Padding(3, 4, 3, 4);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(420, 30);
             txtAddress.TabIndex = 11;
+            //
+            // picAvatar
+            //
+            picAvatar.BackColor = Color.FromArgb(220, 220, 220);
+            picAvatar.BorderStyle = BorderStyle.FixedSingle;
+            picAvatar.Location = new Point(40, 450);
+            picAvatar.Name = "picAvatar";
+            picAvatar.Size = new Size(90, 90);
+            picAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            picAvatar.TabIndex = 15;
+            picAvatar.TabStop = false;
+            //
+            // btnChooseAvatar
+            //
+            btnChooseAvatar.BackColor = Color.FromArgb(46, 125, 50);
+            btnChooseAvatar.ForeColor = Color.White;
+            btnChooseAvatar.FlatStyle = FlatStyle.Flat;
+            btnChooseAvatar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnChooseAvatar.Cursor = Cursors.Hand;
+            btnChooseAvatar.Location = new Point(145, 475);
+            btnChooseAvatar.Name = "btnChooseAvatar";
+            btnChooseAvatar.Size = new Size(150, 40);
+            btnChooseAvatar.TabIndex = 16;
+            btnChooseAvatar.Text = "Choose Photo";
+            btnChooseAvatar.Visible = false;
+            btnChooseAvatar.UseVisualStyleBackColor = false;
+            btnChooseAvatar.Click += btnChooseAvatar_Click;
             //
             // btnEdit
             //
@@ -205,7 +266,7 @@ namespace ZooZen.Forms
             btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnEdit.Cursor = Cursors.Hand;
-            btnEdit.Location = new Point(40, 388);
+            btnEdit.Location = new Point(40, 555);
             btnEdit.Margin = new Padding(3, 4, 3, 4);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(130, 42);
@@ -221,7 +282,7 @@ namespace ZooZen.Forms
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSave.Cursor = Cursors.Hand;
-            btnSave.Location = new Point(40, 388);
+            btnSave.Location = new Point(40, 555);
             btnSave.Margin = new Padding(3, 4, 3, 4);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(130, 42);
@@ -238,7 +299,7 @@ namespace ZooZen.Forms
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnDelete.Cursor = Cursors.Hand;
-            btnDelete.Location = new Point(190, 388);
+            btnDelete.Location = new Point(190, 555);
             btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(160, 42);
@@ -251,7 +312,7 @@ namespace ZooZen.Forms
             //
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(520, 490);
+            ClientSize = new Size(914, 650);
             Controls.Add(formPanel);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -263,6 +324,7 @@ namespace ZooZen.Forms
             Load += ProfileForm_Load;
             formPanel.ResumeLayout(false);
             formPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picAvatar).EndInit();
             ResumeLayout(false);
         }
 
@@ -272,6 +334,8 @@ namespace ZooZen.Forms
         private Label lblTitle;
         private Label lblUsernameL;
         private TextBox txtUsername;
+        private Label lblPasswordL;
+        private TextBox txtPassword;
         private Label lblFirstNameL;
         private TextBox txtFirstName;
         private Label lblLastNameL;
@@ -283,5 +347,7 @@ namespace ZooZen.Forms
         private Button btnEdit;
         private Button btnSave;
         private Button btnDelete;
+        private PictureBox picAvatar;
+        private Button btnChooseAvatar;
     }
 }

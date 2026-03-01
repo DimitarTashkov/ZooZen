@@ -39,7 +39,7 @@ namespace ZooZen.Forms
             lblHeader.Location = new Point(0, 0);
             lblHeader.Name = "lblHeader";
             lblHeader.Padding = new Padding(20, 0, 0, 0);
-            lblHeader.Size = new Size(780, 50);
+            lblHeader.Size = new Size(914, 50);
             lblHeader.TabIndex = 0;
             lblHeader.Text = "Order History";
             lblHeader.TextAlign = ContentAlignment.MiddleLeft;
@@ -52,7 +52,7 @@ namespace ZooZen.Forms
             ordersContainer.FlowDirection = FlowDirection.TopDown;
             ordersContainer.Location = new Point(0, 50);
             ordersContainer.Name = "ordersContainer";
-            ordersContainer.Size = new Size(780, 510);
+            ordersContainer.Size = new Size(914, 510);
             ordersContainer.TabIndex = 1;
             ordersContainer.WrapContents = false;
             //
@@ -64,7 +64,7 @@ namespace ZooZen.Forms
             ordersHeaders.Controls.Add(totalHeader);
             ordersHeaders.Controls.Add(statusHeader);
             ordersHeaders.Controls.Add(actionsHeader);
-            ordersHeaders.Size = new Size(740, 35);
+            ordersHeaders.Size = new Size(894, 35);
             ordersHeaders.Name = "ordersHeaders";
             ordersHeaders.TabIndex = 0;
             //
@@ -128,7 +128,7 @@ namespace ZooZen.Forms
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 248, 245);
-            ClientSize = new Size(780, 560);
+            ClientSize = new Size(914, 560);
             Controls.Add(ordersContainer);
             Controls.Add(lblHeader);
             DoubleBuffered = true;
