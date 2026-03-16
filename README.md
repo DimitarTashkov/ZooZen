@@ -151,9 +151,6 @@ A default admin account is seeded automatically on first run:
 
 ## Screenshots
 
-<details>
-<summary>Click to view screenshots</summary>
-
 ### Login & Register
 ![Login Form](images/login%20form.png)
 ![Register Form](images/register%20form.png)
