@@ -148,6 +148,33 @@ A default admin account is seeded automatically on first run:
 | Code | Discount |
 |---|---|
 | `ZOOZEN10` | 10% |
+
+## Screenshots
+
+<details>
+<summary>Click to view screenshots</summary>
+
+### Login & Register
+![Login Form](images/login%20form.png)
+![Register Form](images/register%20form.png)
+
+### App Pages
+![Home Page](images/home%20page%20img1.png)
+![Catalog](images/catalog%20form.png)
+![Product Management](images/product%20management%20form.png)
+![Checkout](images/checkout%20form.png)
+![Receipt](images/receipt%20image.png)
+![Orders](images/orders%20form.png)
+![Profile](images/profile%20form.png)
+![Users Management](images/users%20form.png)
+![About Us](images/about%20us%20form.png)
+![Contact Us](images/contact%20us%20form.png)
+![Promotions](images/promotions%20form.png)
+
+### Database Diagram
+![DB Diagram](images/db-diagram.png)
+
+</details>
 | `ZOOZEN20` | 20% |
 | `PETLOVER` | 15% |
 
